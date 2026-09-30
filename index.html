@@ -11,8 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
     
     <!-- React & ReactDOM CDN for MorphGallery WebGL component -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <script>
@@ -214,7 +214,9 @@
                     </button>
                 </div>
 
+                <!-- Зона плавной смены фотографий (Слайдер), кликабельная -->
                 <div onclick="toggleCarsList()" class="w-full lg:w-1/2 h-[400px] md:h-[450px] relative rounded-2xl overflow-hidden reveal-element delay-100 shadow-2xl bg-siteBg border border-borderLight cursor-pointer group" id="carShowcaseContainer">
+                    <!-- Генерируется через JS -->
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors z-20"></div>
                 </div>
             </div>
@@ -231,6 +233,7 @@
                         </div>
                         
                         <div id="carsListContainer" class="flex flex-col gap-10">
+                            <!-- Контент машин рендерится здесь -->
                         </div>
                     </div>
                 </div>
@@ -239,7 +242,7 @@
         </div>
     </section>
 
-    <!-- ЖИВЫЕ МОМЕНТЫ (ВИДЕО/ФОТО) -->
+    <!-- НОВЫЙ РАЗДЕЛ: ЖИВЫЕ МОМЕНТЫ (ВИДЕО/ФОТО) -->
     <section id="live-feed" class="py-24 relative z-10 border-t border-borderLight/30 bg-siteBg overflow-hidden">
         <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mb-16 reveal-element text-center">
@@ -248,11 +251,11 @@
             </div>
             
             <div id="liveFeedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max">
+                <!-- Контент живой ленты генерируется через JS -->
             </div>
         </div>
     </section>
 
-    <!-- Остальные секции (Трансфер, Экскурсии, Галерея, Контакты) -->
     <section id="transfers" class="py-24 relative z-10 border-t border-borderLight/30 bg-white">
         <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mb-16 reveal-element">
@@ -344,8 +347,10 @@
         <img id="lightboxImg" class="max-w-full max-h-[90vh] object-contain scale-95 transition-transform duration-300" src="">
     </div>
 
+    <!-- ОБНОВЛЕННАЯ АДМИН-ПАНЕЛЬ С ВКЛАДКАМИ -->
     <div id="adminModal" class="fixed inset-0 z-[100] bg-siteBg/95 backdrop-blur-md hidden flex items-center justify-center p-4 transition-all duration-300 opacity-0">
         <div class="bg-white max-w-6xl w-full p-8 rounded-xl border border-borderLight shadow-xl flex flex-col h-[90vh] relative">
+            
             <div class="flex justify-between items-center border-b border-borderLight/50 pb-6 mb-6 shrink-0">
                 <h3 class="text-2xl font-weight-heading text-darkText flex items-center space-x-3">
                     <i class="fa-solid fa-sliders text-mutedText"></i><span>Управление контентом</span>
@@ -354,12 +359,17 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
+
+            <!-- Вкладки админки -->
             <div class="flex space-x-4 mb-6 border-b border-borderLight/50 pb-2 overflow-x-auto swipe-container shrink-0">
                 <button onclick="switchAdminTab('tab-main')" class="admin-tab-btn active px-4 py-2 text-sm font-medium border-b-2 border-black text-black">Главный Фон</button>
                 <button onclick="switchAdminTab('tab-gallery')" class="admin-tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-mutedText hover:text-black">3D Галерея</button>
                 <button onclick="switchAdminTab('tab-live')" class="admin-tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-mutedText hover:text-black">Живая Лента (Live)</button>
             </div>
+
             <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                
+                <!-- Таб: Главный фон -->
                 <div id="tab-main" class="admin-tab-content space-y-6">
                     <div class="bg-siteBg p-6 rounded-xl border border-borderLight">
                         <h4 class="font-medium text-darkText mb-4">Фото для анимации фона (Hero)</h4>
@@ -370,6 +380,8 @@
                         <div id="adminCarouselList" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6"></div>
                     </div>
                 </div>
+
+                <!-- Таб: 3D Галерея -->
                 <div id="tab-gallery" class="admin-tab-content hidden space-y-6">
                     <div class="bg-siteBg p-6 rounded-xl border border-borderLight">
                         <h4 class="font-medium text-darkText mb-4">Фотографии для 3D Галереи-Карусели</h4>
@@ -380,9 +392,12 @@
                         <div id="adminGalleryList" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6"></div>
                     </div>
                 </div>
+
+                <!-- Таб: Живая лента -->
                 <div id="tab-live" class="admin-tab-content hidden space-y-6">
                     <div class="bg-siteBg p-6 rounded-xl border border-borderLight">
                         <h4 class="font-medium text-darkText mb-2">Живые моменты (Фото и Видео)</h4>
+                        <p class="text-sm text-mutedText mb-4">Загружайте красивые видео (mp4) и фото. Они будут плавно появляться при скролле.</p>
                         <label class="inline-block border border-dashed border-darkText px-6 py-3 rounded-full cursor-pointer hover:bg-gray-100 transition-colors">
                             <i class="fa-solid fa-video mr-2"></i> Загрузить медиа
                             <input type="file" accept="image/*,video/mp4,video/webm" multiple class="hidden" onchange="handleLiveFeedUpload(event)">
@@ -390,11 +405,12 @@
                         <div id="adminLiveFeedList" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6"></div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <!-- MorphGallery React Code -->
+    <!-- MorphGallery React Code (без изменений) -->
     <script type="text/babel">
         const wrapIndex = (i, n, loop) => { if (n <= 0) return 0; return loop ? ((i % n) + n) % n : Math.min(Math.max(i, 0), n - 1) }
         const easeInOutQuint = (t) => { const x = Math.min(Math.max(t, 0), 1); return x < 0.5 ? 16 * x ** 5 : 1 - (-2 * x + 2) ** 5 / 2 }
@@ -498,45 +514,7 @@
     </script>
 
     <script>
-        // --- ДАННЫЕ ВШИТЫ НАПРЯМУЮ ИЗ ВАШЕЙ ПАПКИ "ФОТО" НА GITHUB ---
-        
-        const SITE_PHOTOS = {
-            siteItems: [
-                { src: 'фото/dji_fly_20260902_163910_197_1788356541375_photo_optimized.jpg', alt: 'Абхазия' },
-                { src: 'фото/aas80-nature-2020894_1920.jpg', alt: 'Природа' },
-                { src: 'фото/9891090-cable-car-3748341_1920.jpg', alt: 'Трансфер' }
-            ],
-            galleryItems: [
-                { src: 'фото/5984c7edd5b89d23a43828a8.jpg' },
-                { src: 'фото/60bb331409b2db3b0210c873.jpg' },
-                { src: 'фото/6267d5ad9d61613568b9a437.jpg' },
-                { src: 'фото/aas80-nature-2020894_1920.jpg' },
-                { src: 'фото/dji_fly_20260902_163910_197_1788356541375_photo_optimized.jpg' }
-            ]
-        };
-
-        let CARS_DATA = [
-            {
-                id: 'car_1',
-                title: 'Наш Автопарк',
-                description: 'Комфортные автомобили для вашего идеального путешествия по Абхазии.',
-                photos: [
-                    'фото/6267d7890ab6a8e5415e7734.jpg',
-                    'фото/60bb2e6a2a75d23b58d6c33e.jpg'
-                ]
-            }
-        ]; 
-
-        let LIVE_FEED_DATA = [
-            { id: 'live_1', type: 'video', src: 'фото/compose_video_1788122199141 (1).mp4' },
-            { id: 'live_2', type: 'image', src: 'фото/5984c7edd5b89d23a43828a8.jpg' },
-            { id: 'live_3', type: 'image', src: 'фото/60bb331409b2db3b0210c873.jpg' },
-            { id: 'live_4', type: 'image', src: 'фото/6267d5ad9d61613568b9a437.jpg' }
-        ];
-        
-        let routePhotos = {};
-        
-        // --- База Данных IndexedDB (Только для новых добавлений из админки, старт идет с готовых данных) ---
+        // --- База Данных IndexedDB ---
         const idb = {
             db: null,
             init: function() {
@@ -572,6 +550,49 @@
             }
         };
 
+        // --- Данные ---
+        // Фотографии по умолчанию 
+        const SITE_PHOTOS = {
+            siteItems: [
+                { src: 'https://i.ibb.co/pBKkrM0Q/60bb2e6a2a75d23b58d6c33e.jpg', alt: 'Главный фон 1' },
+                { src: 'https://i.ibb.co/Dg5Nt2YJ/5984c7edd5b89d23a43828a8.jpg', alt: 'Главный фон 2' },
+                { src: 'https://i.ibb.co/Fqzmkz9S/60bb331409b2db3b0210c873.jpg', alt: 'Главный фон 3' }
+            ],
+            galleryItems: [
+                { src: 'https://i.ibb.co/C3Wf9Pfm/dji-fly-20260902-20260902-3910-197-1788356541375-photo-optimized.jpg' },
+                { src: 'https://i.ibb.co/wNmbVy2C/IMG-20260605-194344.jpg' },
+                { src: 'https://i.ibb.co/fdTPdFVB/oxide4-abkhazia-20.jpg' },
+                { src: 'https://i.ibb.co/KzwmXQ2S/sava86-lake-6992235-1920.jpg' },
+                { src: 'https://i.ibb.co/1tQsvB5J/valerushka-kay-4824-1920.jpg' }
+            ]
+        };
+
+        // Дефолтные данные автопарка
+        const DEFAULT_CARS = [
+            {
+                id: 'car_default_1',
+                title: 'Toyota Vellfire (VIP Minivan)',
+                description: 'Пассажиры: до 6 человек\\nБагаж: 4 чемодана + ручная кладь\\nКласс: VIP / Представительский\\n\\nКраткое описание:\\nПремиальный минивэн повышенной комфортности для VIP-трансферов, встречи делегаций и семейных поездок. Роскошный салон, плавный ход, капитанские кресла и приватность.',
+                photos: ['https://i.ibb.co/WNk0bLVz/image.jpg']
+            },
+            {
+                id: 'car_default_2',
+                title: 'Toyota Vellfire (VIP Minivan)',
+                description: 'Пассажиры: до 6 человек\\nБагаж: 4 чемодана + ручная кладь\\nКласс: VIP / Представительский\\n\\nКраткое описание:\\nПремиальный минивэн повышенной комфортности для VIP-трансферов, встречи делегаций и семейных поездок. Роскошный салон, плавный ход, капитанские кресла и приватность.',
+                photos: ['https://i.ibb.co/Fbvdnhwb/Gemini-Generated-Image-imk2q5imk2q5imk2.jpg']
+            },
+            {
+                id: 'car_default_3',
+                title: 'Mercedes-Benz Sprinter (Minibus)',
+                description: 'Пассажиры: до 16–19 человек\\nБагаж: 12–15 чемоданов + ручная кладь\\nКласс: Групповой трансфер / Бизнес-микроавтобус\\n\\nКраткое описание:\\nНадежный и вместительный микроавтобус немецкого бренда для комфортных групповых трансферов, обслуживания корпоративных мероприятий, встреча делегаций и экскурсионных поездок. Высокий потолок, эргономичные сиденья с откидными спинками, мощная система климат-контроля и просторный багажный отсек обеспечивают высокий уровень удобства для каждого пассажира на любых расстояниях.',
+                photos: ['https://i.ibb.co/ycXL1y1F/Gemini-Generated-Image-pwmtwnpwmtwnpwmt.jpg']
+            }
+        ];
+
+        let CARS_DATA = []; // { id, title, description, photos: [] }
+        let LIVE_FEED_DATA = []; // { id, type: 'image'|'video', src }
+        let routePhotos = {};
+        
         // --- Утилиты сжатия ---
         function compressImage(base64Str, maxWidth = 1920, quality = 0.85) {
             return new Promise((resolve) => {
@@ -604,6 +625,7 @@
             }
         }
 
+        // --- ЛОГИКА АВТОПАРКА (Новая) ---
         let carsListExpanded = false;
 
         function toggleCarsList() {
@@ -672,6 +694,7 @@
                 car.description = el.value;
                 saveCarsData();
             }
+            // Авто-ресайз текстареа
             el.style.height = 'auto';
             el.style.height = (el.scrollHeight) + 'px';
         }
@@ -695,6 +718,7 @@
                     </div>
                     
                     <div class="p-6">
+                        <!-- Галерея фото конкретной машины -->
                         <div class="flex overflow-x-auto gap-4 pb-4 snap-x swipe-container h-48 md:h-64 mb-6">
                             ${car.photos.map((p, idx) => `
                                 <div class="relative group min-w-[200px] md:min-w-[300px] h-full rounded-xl overflow-hidden snap-center shrink-0 border border-borderLight">
@@ -705,6 +729,7 @@
                                 </div>
                             `).join('')}
                             
+                            <!-- Кнопка добавления фото -->
                             <label class="min-w-[200px] md:min-w-[300px] h-full rounded-xl border-2 border-dashed border-borderLight hover:border-darkText flex flex-col items-center justify-center cursor-pointer transition-colors snap-center shrink-0 bg-white/50 group">
                                 <i class="fa-solid fa-plus text-3xl text-borderLight group-hover:text-darkText transition-colors mb-2"></i>
                                 <span class="text-sm font-medium text-mutedText group-hover:text-darkText transition-colors">Загрузить фото</span>
@@ -712,29 +737,34 @@
                             </label>
                         </div>
                         
+                        <!-- Описание (плавный переход) -->
                         <div class="bg-white rounded-xl border border-borderLight p-4 transition-all duration-300 focus-within:ring-1 focus-within:ring-black/20 focus-within:shadow-sm">
                             <textarea placeholder="Введите описание автомобиля, характеристики, особенности..." 
                                       class="w-full bg-transparent outline-none text-darkText font-weight-body text-sm md:text-base auto-resize transition-all duration-300"
-                                      oninput="updateCarDescription('${car.id}', this)">${car.description}</textarea>
+                                      oninput="updateCarDescription('${car.id}', this)">${car.description.replace(/\\n/g, '\n')}</textarea>
                         </div>
                     </div>
                 </div>
             `).join('');
             
+            // Триггер ресайза всех текстарей
             document.querySelectorAll('.auto-resize').forEach(el => {
                 el.style.height = 'auto';
                 el.style.height = (el.scrollHeight) + 'px';
             });
         }
 
+        // Слайдер машин на главном экране (вытягивает все фото из CARS_DATA)
         let carSliderInterval;
         let currentCarIndex = 0;
         function renderCarShowcaseSlider() {
             const container = document.getElementById('carShowcaseContainer');
             if(!container) return;
             
+            // Собираем все фото из всех добавленных машин
             let allPhotos = CARS_DATA.flatMap(c => c.photos);
             
+            // Если ничего не добавлено, показываем пустой серый блок с иконкой
             if(allPhotos.length === 0) {
                 container.innerHTML = `<div class="absolute inset-0 flex flex-col items-center justify-center text-mutedText"><i class="fa-solid fa-car text-6xl mb-4 opacity-50"></i><p>Автопарк не заполнен</p></div>`;
                 clearInterval(carSliderInterval);
@@ -761,6 +791,7 @@
         }
 
 
+        // --- ЛОГИКА ЖИВОГО САЙТА (Live Feed) ---
         async function handleLiveFeedUpload(event) {
             if (!event.target.files.length) return;
             await processFilesForUpload(event.target.files, (data, name, type) => {
@@ -769,7 +800,7 @@
                     type: type,
                     src: data
                 });
-            }, true); 
+            }, true); // true = asIsForVideo
             
             await idb.set('abkhazia_live_feed', LIVE_FEED_DATA);
             renderLiveFeed();
@@ -808,10 +839,12 @@
                 }
             }).join('');
             
+            // Ре-инициализация наблюдателя за появлением элементов
             initScrollAnimations();
         }
 
 
+        // --- СТАРЫЕ ФУНКЦИИ АДМИНКИ И ГАЛЕРЕИ (с поддержкой вкладок) ---
         function switchAdminTab(tabId) {
             document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.admin-tab-btn').forEach(el => {
@@ -884,6 +917,7 @@
             }
         }
 
+        // Маршруты и 3D галерея (сохранены из оригинального кода)
         const initialSochiRoutes = [ { id: 's1', destination: 'Гагра', price: '5 000 руб.' }, { id: 's2', destination: 'Пицунда', price: '6 000 руб.' }, { id: 's3', destination: 'Гудаута', price: '6 500 руб.' }, { id: 's4', destination: 'Новый Афон', price: '7 000 руб.' }, { id: 's5', destination: 'Сухум', price: '8 000 руб.' } ];
         const initialSukhumRoutes = [ { id: 'k1', destination: 'Сухум', price: '3 500 руб.' }, { id: 'k2', destination: 'Новый Афон', price: '4 500 руб.' }, { id: 'k3', destination: 'Гудаута', price: '5 500 руб.' }, { id: 'k4', destination: 'Пицунда', price: '6 500 руб.' }, { id: 'k5', destination: 'Гагра', price: '7 500 руб.' } ];
         const initialTours = [ { id: 't1', route: 'Сухум - Новый Афон - оз. Рица - Гагра', price: '20 000 руб.' }, { id: 't2', route: 'Новый Афон - оз. Рица - Гагра', price: '15 000 руб.' }, { id: 't3', route: 'Гагра - оз. Рица', price: '10 000 руб.' }, { id: 't4', route: 'Гагра - Новый Афон - оз. Рица', price: '15 000 руб.' }, { id: 't5', route: 'Сухум - Ткуарчал - Черниговка', price: '15 000 - 17 000 руб.' } ];
@@ -895,6 +929,7 @@
             document.getElementById('toursList').innerHTML = initialTours.map((item, idx) => `<div onclick="openRouteModal('Экскурсия: ${item.route}', '${item.price}', '${item.id}')" class="clean-card p-8 cursor-pointer flex flex-col justify-between group reveal-element ${idx % 2 === 0 ? 'delay-100' : ''}"><div><div class="flex items-center justify-between mb-8"><span class="text-xs uppercase tracking-widest text-mutedText font-medium">Тур</span><i class="fa-solid fa-arrow-up-right-from-square text-borderLight group-hover:text-darkText transition-colors"></i></div><h3 class="text-xl font-medium text-darkText mb-12 leading-snug">${item.route}</h3></div><div class="pt-6 border-t border-borderLight/40 flex items-center justify-between mt-auto"><span class="text-darkText font-medium text-lg">${item.price}</span></div></div>`).join('');
         }
 
+        // Лайтбокс и инициализация
         function openLightbox(url) {
             const modal = document.getElementById('lightboxModal'), img = document.getElementById('lightboxImg');
             img.src = url; modal.classList.remove('hidden');
@@ -936,9 +971,25 @@
         }
 
         window.addEventListener('DOMContentLoaded', async () => {
-            // МЫ ОТКЛЮЧИЛИ ПЕРЕЗАПИСЬ ИЗ ПУСТОЙ БАЗЫ! 
-            // Теперь данные всегда берутся из вшитого выше кода.
-            
+            try {
+                // Загружаем сохраненные данные
+                const sSlides = await idb.get('abkhazia_site_slides'); if (sSlides?.length) SITE_PHOTOS.siteItems = sSlides;
+                const sGallery = await idb.get('abkhazia_gallery_photos'); if (sGallery?.length) SITE_PHOTOS.galleryItems = sGallery;
+                const sRoutes = await idb.get('abkhazia_route_photos'); if (sRoutes) routePhotos = sRoutes;
+                
+                // Изменение: загружаем дефолтные машины, если БД пуста
+                const sCars = await idb.get('abkhazia_cars_data'); 
+                if (sCars && sCars.length > 0) {
+                    CARS_DATA = sCars;
+                } else {
+                    CARS_DATA = DEFAULT_CARS;
+                    // Сохраняем дефолтные машины в БД, чтобы они отображались при следующих загрузках
+                    await idb.set('abkhazia_cars_data', CARS_DATA);
+                }
+
+                const sLive = await idb.get('abkhazia_live_feed'); if (sLive) LIVE_FEED_DATA = sLive;
+            } catch(e) { console.error("DB Load Error", e); }
+
             renderRoutes();
             setTimeout(() => {
                 updateMorphGallery(); 
